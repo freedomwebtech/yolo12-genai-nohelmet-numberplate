@@ -55,13 +55,6 @@ def analyze_image_with_gemini_base64(base64_image, track_id):
     except Exception as e:
         print(f"[Track ID {track_id}] Error with Gemini:", e)
 
-# Debug mouse position
-def RGB(event, x, y, flags, param):
-    if event == cv2.EVENT_MOUSEMOVE:
-        print(f"Mouse moved to: [{x}, {y}]")
-
-cv2.namedWindow("RGB")
-cv2.setMouseCallback("RGB", RGB)
 
 # Trackers
 last_sent_time = {}
@@ -113,7 +106,7 @@ while True:
                     threading.Thread(target=analyze_image_with_gemini_base64,
                                      args=(base64_img, track_id)).start()
 
-    cv2.imshow("RGB", frame)
+    cv2.imshow("FRAME", frame)
     if cv2.waitKey(1) & 0xFF == 27:  # ESC to quit
         break
 
